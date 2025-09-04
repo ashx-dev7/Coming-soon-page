@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coming soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        form input[type="email"] {
+            padding: 10px;
+            width: 60%;
+            max-width: 300px;
+            border: 1px solid #fff;
+            background-color: #000;
+            color: #fff;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #ddd;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #countdown {
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Coming soon</h1>
+<p>We're working hard to launch our nwe website.</p>
+<p>Stay turned!</p>
+
+<form>
+   <label for="email">get notified when we launch:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email address"><br><br>
+    <input type="submit" value="notify me">
+</form>
+<footer>
+    <p>Follow us:</p>
+    <a href="https://www.facebook.com/">Facebook</a> |
+    <a href="https://www.x.com/">Twitter</a> |
+    <a href="https://www.instagram.com/">Instagram</a>
+</footer>
+
+<div id="countdown">
+    <span id="days">00</span>d :
+    <span id="hours">00</span>h :
+    <span id="minutes">00</span>m :
+    <span id="seconds">00</span>s
+</div>
+
+<script>
+    // Set the target date for launch
+    const launchDate = new Date("December 31, 2025 23:59:59").getTime();
+
+    // Update countdown every second
+    const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        // Time calculations
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update HTML
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+        // If the countdown is finished
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML = "We're Live!";
+        }
+    }, 1000);
+
+</script>
+</body>
+</html>
